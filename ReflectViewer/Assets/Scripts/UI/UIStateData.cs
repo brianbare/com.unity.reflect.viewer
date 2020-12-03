@@ -26,6 +26,7 @@ namespace Unity.Reflect.Viewer.UI
         GizmoMode = 17,
         InfoSelect = 18,
         DebugOptions = 19,
+        CameraViews = 99
     }
     /// <summary>
     /// Defines a global mode for dialog buttons. For example Help Mode, which makes clicking any dialog button open a help dialog.
@@ -48,7 +49,7 @@ namespace Unity.Reflect.Viewer.UI
         // Right Toolbar
         OrbitSelect,
         LookAround,
-        SunStudyDial,
+        SunStudyDial,        
     }
 
     public enum ToolbarType
@@ -146,6 +147,7 @@ namespace Unity.Reflect.Viewer.UI
         public SettingsDialogState settingsDialogState;
         public NavigationState navigationState;
         public CameraOptionData cameraOptionData;
+        public CameraViewsData cameraViewsData;
         public SceneOptionData sceneOptionData;
         [NonSerialized]
         public Project selectedProjectOption;
@@ -196,7 +198,8 @@ namespace Unity.Reflect.Viewer.UI
                 landingScreenFilterData,
                 modelScale,
                 deviceCapability,
-                themeName);
+                themeName,
+                cameraViewsData);
         }
 
         public override int GetHashCode()
@@ -229,7 +232,7 @@ namespace Unity.Reflect.Viewer.UI
                 hashCode = (hashCode * 397) ^ modelScale.GetHashCode();
                 hashCode = (hashCode * 397) ^ deviceCapability.GetHashCode();
                 hashCode = (hashCode * 397) ^ themeName.GetHashCode();
-
+                hashCode = (hashCode * 397) ^ cameraViewsData.GetHashCode();
                 return hashCode;
             }
         }
@@ -256,6 +259,7 @@ namespace Unity.Reflect.Viewer.UI
                 settingsDialogState.Equals(other.settingsDialogState) &&
                 navigationState.Equals(other.navigationState) &&
                 cameraOptionData.Equals(other.cameraOptionData) &&
+                cameraViewsData.Equals(other.cameraViewsData) &&
                 sceneOptionData.Equals(other.sceneOptionData) &&
                 Equals(selectedProjectOption, other.selectedProjectOption) &&
                 projectOptionIndex == other.projectOptionIndex &&

@@ -85,6 +85,7 @@ namespace Unity.Reflect.Viewer.UI
             settingsToolState.bimFilterEnabled = true;
             settingsToolState.sceneOptionEnabled = true;
             settingsToolState.sunStudyEnabled = true;
+            settingsToolState.cameraViewsEnabled = true;
             UIStateManager.current.Dispatcher.Dispatch(Payload<ActionTypes>.From(ActionTypes.SetSettingsToolState, settingsToolState));
 
         }
@@ -128,7 +129,10 @@ namespace Unity.Reflect.Viewer.UI
             settingsToolState.bimFilterEnabled = true;
             settingsToolState.sceneOptionEnabled = true;
             settingsToolState.sunStudyEnabled = true;
+            settingsToolState.cameraViewsEnabled = true;
             UIStateManager.current.Dispatcher.Dispatch(Payload<ActionTypes>.From(ActionTypes.SetSettingsToolState, settingsToolState));
+
+            UIStateManager.current.Dispatcher.Dispatch(Payload<ActionTypes>.From(ActionTypes.ResetHomeView, null));
         }
 
         [ContextMenu(nameof(OnNavigationButtonClicked))]

@@ -69,3 +69,7 @@ MonoBehaviour:
     helpModeEntryId: 5
     title: Sun Study Dial
     content: Adjust the position of the sun relative to the scene environment
+  - dialogTypeId: 99
+    helpModeEntryId: 0
+    title: Camera Views
+    content: Jump to custom camera views driven from BIM model parameter

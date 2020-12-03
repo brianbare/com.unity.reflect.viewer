@@ -647,7 +647,8 @@ namespace Unity.Reflect.Viewer.UI
             {
                 bimFilterEnabled = true,
                 sceneOptionEnabled = true,
-                sunStudyEnabled = true
+                sunStudyEnabled = true,
+                cameraViewsEnabled = true
             };
 
             stateChanged?.Invoke(m_UIStateData);
@@ -931,6 +932,68 @@ namespace Unity.Reflect.Viewer.UI
                     projectStateChanged?.Invoke(m_UIProjectStateData);
                     break;
                 }
+                case ActionTypes.SetFilterSearch:
+                {
+                    var searchString = (string) payload.Data;
+
+                    m_UIProjectStateData.filterSearchString = searchString;
+                    projectStateChanged?.Invoke(m_UIProjectStateData);
+                    break;
+                }
+                case ActionTypes.PrepareCameraView:
+                {
+                    var cameraViewInfo = (CameraViewsInfo)payload.Data;
+                    // Appropriately add, remove or update the Camera View Info list
+                    if (cameraViewInfo.updateType == StreamEvent.Added)
+                    {
+                        if (!m_UIProjectStateData.cameraViewsInfos.Any(x => x.nameText == cameraViewInfo.nameText))
+                        {
+                            m_UIProjectStateData.cameraViewsInfos.Add(cameraViewInfo);
+                        }
+                    }
+                    else if (cameraViewInfo.updateType == StreamEvent.Changed)
+                    {
+                        if (m_UIProjectStateData.cameraViewsInfos.Any(x => x.nameText == cameraViewInfo.nameText))
+                        {
+                            var infoToRemove = m_UIProjectStateData.cameraViewsInfos.First(x => x.nameText == cameraViewInfo.nameText);
+                            m_UIProjectStateData.cameraViewsInfos.Remove(infoToRemove);
+                            m_UIProjectStateData.cameraViewsInfos.Add(cameraViewInfo);
+                        }
+                    }
+                    else if (cameraViewInfo.updateType == StreamEvent.Removed)
+                    {
+                        if (m_UIProjectStateData.cameraViewsInfos.Any(x => x.nameText == cameraViewInfo.nameText))
+                        {
+                            var infoToRemove = m_UIProjectStateData.cameraViewsInfos.First(x => x.nameText == cameraViewInfo.nameText);
+                            m_UIProjectStateData.cameraViewsInfos.Remove(infoToRemove);
+                        }
+                    }
+
+                    projectStateChanged?.Invoke(m_UIProjectStateData);
+                    break;
+                }
+                case ActionTypes.SetCameraInfo:
+                {
+                    var cameraViewData = (CameraViewsData)payload.Data;
+                    if (cameraViewData.heightAdjustment != m_UIStateData.cameraViewsData.heightAdjustment)
+                    {
+                        m_UIStateData.cameraViewsData.heightAdjustment = cameraViewData.heightAdjustment;
+                    }
+                    if (cameraViewData.cameraToMove != m_UIStateData.cameraViewsData.cameraToMove)
+                    {
+                        m_UIStateData.cameraViewsData.cameraToMove = cameraViewData.cameraToMove;
+                    }
+                    m_UIStateData.cameraViewsData = cameraViewData;
+                    // Don't invoke event since this is just a central data hold
+                    break;
+                }
+                case ActionTypes.SelectCameraView:
+                {
+                    var cameraViewInfo = (CameraViewsInfo)payload.Data;
+                    m_UIProjectStateData.currentCameraViewInfo = cameraViewInfo;
+                    projectStateChanged?.Invoke(m_UIProjectStateData);
+                    break;
+                }
                 case ActionTypes.SetViewOption:
                 {
                     var sceneOptionData = (SceneOptionData) payload.Data;
@@ -1055,6 +1118,12 @@ namespace Unity.Reflect.Viewer.UI
                         // always scale these two the same
                         m_RootNode.gameObject.transform.localScale = new Vector3(1.0f / scalef, 1.0f / scalef, 1.0f / scalef);
                         m_BoundingBoxRootNode.gameObject.transform.localScale = new Vector3(1.0f / scalef, 1.0f / scalef, 1.0f / scalef);
+
+                        m_BoundingBoxRootNode.SetActive(true);
+                        if (m_ReflectPipeline.TryGetNode<SpatialFilterNode>(out var spatialFilterNode))
+                        {
+                            spatialFilterNode.settings.displayOnlyBoundingBoxes = false;
+                        }
                     }
 
                     m_UIStateData.navigationState = navigationState;
