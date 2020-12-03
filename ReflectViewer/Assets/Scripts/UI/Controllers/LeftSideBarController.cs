@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Unity.Reflect.Viewer.UI
@@ -14,6 +14,9 @@ namespace Unity.Reflect.Viewer.UI
 
         [SerializeField]
         ToolButton m_SunstudyButton;
+
+        [SerializeField]
+        ToolButton m_CameraViewsButton;
 #pragma warning restore CS0649
 
         bool m_ToolbarsEnabled;
@@ -45,6 +48,8 @@ namespace Unity.Reflect.Viewer.UI
             m_FilterButton.button.interactable = m_ToolbarsEnabled && dataSettingsToolStateData.bimFilterEnabled;
             m_SceneSettingButton.button.interactable = m_ToolbarsEnabled && dataSettingsToolStateData.sceneOptionEnabled;
             m_SunstudyButton.button.interactable = m_ToolbarsEnabled && dataSettingsToolStateData.sunStudyEnabled;
+            if (m_CameraViewsButton != null)
+                m_CameraViewsButton.button.interactable = m_ToolbarsEnabled && dataSettingsToolStateData.cameraViewsEnabled;
         }
     }
 }

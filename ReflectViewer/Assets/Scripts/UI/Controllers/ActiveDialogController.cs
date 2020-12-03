@@ -26,6 +26,9 @@ namespace Unity.Reflect.Viewer.UI
         [SerializeField, Tooltip("Reference to the Filters Dialog")]
         DialogWindow m_FiltersDialog;
 
+        [SerializeField, Tooltip("Reference to the Camera Views Dialog")]
+        DialogWindow m_CameraViewsDialog;
+
         [SerializeField, Tooltip("Reference to the Camera Options Dialog")]
         DialogWindow m_CameraOptionsDialog;
 
@@ -94,6 +97,7 @@ namespace Unity.Reflect.Viewer.UI
                 m_ClippingToolDialog.Close();
                 m_MeasureToolDialog.Close();
                 m_CameraOptionsDialog.Close();
+                m_CameraViewsDialog?.Close();
                 m_SceneOptionsDialog.Close();
                 m_SunStudyDialog.Close();
                 m_SequenceDialog.Close();
@@ -133,6 +137,9 @@ namespace Unity.Reflect.Viewer.UI
                         break;
                     case DialogType.CameraOptions:
                         m_CameraOptionsDialog.Open();
+                        break;
+                    case DialogType.CameraViews:
+                        m_CameraViewsDialog.Open();
                         break;
                     case DialogType.SceneOptions:
                         m_SceneOptionsDialog.Open();

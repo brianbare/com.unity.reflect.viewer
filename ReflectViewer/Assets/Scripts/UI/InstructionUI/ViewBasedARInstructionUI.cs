@@ -142,6 +142,7 @@ namespace Unity.Reflect.Viewer.UI
             settingsToolState.bimFilterEnabled = true;
             settingsToolState.sceneOptionEnabled = true;
             settingsToolState.sunStudyEnabled = false;
+            settingsToolState.cameraViewsEnabled = false;
             UIStateManager.current.Dispatcher.Dispatch(Payload<ActionTypes>.From(ActionTypes.SetSettingsToolState, settingsToolState));
         }
 
@@ -186,6 +187,7 @@ namespace Unity.Reflect.Viewer.UI
             settingsToolState.bimFilterEnabled = false;
             settingsToolState.sceneOptionEnabled = false;
             settingsToolState.sunStudyEnabled = false;
+            settingsToolState.cameraViewsEnabled = false;
             UIStateManager.current.Dispatcher.Dispatch(Payload<ActionTypes>.From(ActionTypes.SetSettingsToolState, settingsToolState));
         }
 
@@ -228,6 +230,7 @@ namespace Unity.Reflect.Viewer.UI
             settingsToolState.bimFilterEnabled = false;
             settingsToolState.sceneOptionEnabled = false;
             settingsToolState.sunStudyEnabled = false;
+            settingsToolState.cameraViewsEnabled = false;
             UIStateManager.current.Dispatcher.Dispatch(Payload<ActionTypes>.From(ActionTypes.SetSettingsToolState, settingsToolState));
         }
 
@@ -254,6 +257,7 @@ namespace Unity.Reflect.Viewer.UI
             settingsToolState.bimFilterEnabled = true;
             settingsToolState.sceneOptionEnabled = true;
             settingsToolState.sunStudyEnabled = false;
+            settingsToolState.cameraViewsEnabled = false;
             UIStateManager.current.Dispatcher.Dispatch(Payload<ActionTypes>.From(ActionTypes.SetSettingsToolState, settingsToolState));
         }
 

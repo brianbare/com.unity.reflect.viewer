@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 namespace Unity.Reflect.Viewer.UI
@@ -11,12 +11,14 @@ namespace Unity.Reflect.Viewer.UI
         public bool bimFilterEnabled;
         public bool sceneOptionEnabled;
         public bool sunStudyEnabled;
+        public bool cameraViewsEnabled;
 
         public static readonly SettingsToolStateData defaultData = new SettingsToolStateData()
         {
             bimFilterEnabled = true,
             sceneOptionEnabled = true,
             sunStudyEnabled = true,
+            cameraViewsEnabled = true,
         };
 
 
@@ -33,7 +35,7 @@ namespace Unity.Reflect.Viewer.UI
         public bool Equals(SettingsToolStateData other)
         {
             return bimFilterEnabled == other.bimFilterEnabled && sceneOptionEnabled == other.sceneOptionEnabled &&
-                sunStudyEnabled == other.sunStudyEnabled;
+                sunStudyEnabled == other.sunStudyEnabled && cameraViewsEnabled == other.cameraViewsEnabled;
         }
 
         public override bool Equals(object obj)
@@ -48,6 +50,7 @@ namespace Unity.Reflect.Viewer.UI
                 var hashCode = bimFilterEnabled.GetHashCode();
                 hashCode = (hashCode * 397) ^ sceneOptionEnabled.GetHashCode();
                 hashCode = (hashCode * 397) ^ sunStudyEnabled.GetHashCode();
+                hashCode = (hashCode * 397) ^ cameraViewsEnabled.GetHashCode();
                 return hashCode;
             }
         }

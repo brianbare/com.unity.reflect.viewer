@@ -174,6 +174,64 @@ namespace Unity.Reflect.Viewer.UI
     }
 
     [Serializable]
+    public struct CameraViewsInfo : IEquatable<CameraViewsInfo>
+    {
+        /// <summary>
+        /// Name of the camera location
+        /// </summary>
+        public string nameText;
+        /// <summary>
+        /// Location of the camera
+        /// </summary>
+        public Transform location;
+        /// <summary>
+        /// Distance to move the camera up or down
+        /// </summary>
+        public int distance;
+        /// <summary>
+        /// The camera to move
+        /// </summary>
+        public Camera cameraToMove;
+        /// <summary>
+        /// Update event type
+        /// </summary>
+        public StreamEvent updateType;
+
+        public static bool operator ==(CameraViewsInfo a, CameraViewsInfo b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(CameraViewsInfo a, CameraViewsInfo b)
+        {
+            return !(a == b);
+        }
+
+        public bool Equals(CameraViewsInfo other)
+        {
+            return nameText == other.nameText &&
+            location == other.location &&
+            distance == other.distance;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CameraViewsInfo other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (nameText != null ? nameText.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ location.GetHashCode();
+                hashCode = (hashCode * 397) ^ distance.GetHashCode();
+                return hashCode;
+            }
+        }
+    }
+
+    [Serializable]
     public struct UIProjectStateData : IEquatable<UIProjectStateData>
     {
         [NonSerialized]
@@ -186,12 +244,15 @@ namespace Unity.Reflect.Viewer.UI
         public List<string> filterGroupList;
         public HighlightFilterInfo highlightFilter;
         public List<FilterItemInfo> filterItemInfos;
+        public string filterSearchString;
         public FilterItemInfo lastChangedFilterItem;
         public ObjectSelectionInfo objectSelectionInfo;
         public ISpatialPicker<Tuple<GameObject, RaycastHit>> objectPicker;
         public ISpatialPicker<Tuple<GameObject, RaycastHit>> teleportPicker;
         public Vector3? teleportTarget;
         public CameraTransformInfo cameraTransformInfo;
+        public List<CameraViewsInfo> cameraViewsInfos;
+        public CameraViewsInfo currentCameraViewInfo;
 
         public override string ToString()
         {
@@ -220,11 +281,13 @@ namespace Unity.Reflect.Viewer.UI
                 Equals(filterGroupList, other.filterGroupList) &&
                 highlightFilter.Equals(other.highlightFilter) &&
                 Equals(filterItemInfos, other.filterItemInfos) &&
+                filterSearchString == other.filterSearchString &&
                 lastChangedFilterItem.Equals(other.lastChangedFilterItem) &&
                 objectSelectionInfo.Equals(other.objectSelectionInfo) &&
                 objectPicker == other.objectPicker &&
                 teleportPicker == other.teleportPicker &&
                 teleportTarget == other.teleportTarget &&
+                currentCameraViewInfo == other.currentCameraViewInfo &&
                 cameraTransformInfo == other.cameraTransformInfo;
         }
 
@@ -248,11 +311,13 @@ namespace Unity.Reflect.Viewer.UI
                 hashCode = (hashCode * 397) ^ (filterGroupList != null ? filterGroupList.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ highlightFilter.GetHashCode();
                 hashCode = (hashCode * 397) ^ (filterItemInfos != null ? filterItemInfos.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (filterSearchString != null ? filterSearchString.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ lastChangedFilterItem.GetHashCode();
                 hashCode = (hashCode * 397) ^ objectSelectionInfo.GetHashCode();
                 hashCode = (hashCode * 397) ^ (objectPicker != null ? objectPicker.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (teleportPicker != null ? teleportPicker.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (teleportTarget.HasValue ? teleportTarget.Value.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ currentCameraViewInfo.GetHashCode();
                 hashCode = (hashCode * 397) ^ cameraTransformInfo.GetHashCode();
                 return hashCode;
             }
