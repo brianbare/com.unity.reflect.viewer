@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1943009641}
-  m_IndirectSpecularColor: {r: 0.21120189, g: 0.241388, b: 0.3275878, a: 1}
+  m_IndirectSpecularColor: {r: 0.20943011, g: 0.24079295, b: 0.3252045, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -443,7 +443,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 148053682}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1744097724}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 522063b1faa594f529365cbf93b7cba9, type: 3}
@@ -3680,6 +3680,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9116979486542233358, guid: 9cada418f21914d2d810516aa8be800b,
+        type: 3}
+      propertyPath: m_ScaleRadial
+      value: 
+      objectReference: {fileID: 1744097724}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cada418f21914d2d810516aa8be800b, type: 3}
 --- !u!224 &376012912 stripped
@@ -7137,6 +7142,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 51.75
       objectReference: {fileID: 0}
+    - target: {fileID: 2607432501967591882, guid: 620e1621bd98b4f3e907f77e4dd15777,
+        type: 3}
+      propertyPath: m_ScaleRadial
+      value: 
+      objectReference: {fileID: 1744097724}
     - target: {fileID: 4119047822502442103, guid: 620e1621bd98b4f3e907f77e4dd15777,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -15631,6 +15641,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1744097724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5562998690548399466, guid: d9d24beb18c8b6241a7ecaf5204a55af,
+    type: 3}
+  m_PrefabInstance: {fileID: 148053682}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1748926655 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2597916012388522901, guid: 7827599a479634546b1115474a7ebd22,
@@ -21794,7 +21810,10 @@ MonoBehaviour:
   m_RootNode: {fileID: 1405457555}
   m_BoundingBoxRootNode: {fileID: 1675058898}
   m_PlacementRoot: {fileID: 1711775292}
-  m_PlacementRulesPrefabs: []
+  m_PlacementRulesPrefabs:
+  - {fileID: 2900633560613931061, guid: 354adbea996c34ae1b43c7e0980aa50e, type: 3}
+  - {fileID: 2900633560613931061, guid: 6bf37f8134bec4003b56d55f09a2de56, type: 3}
+  - {fileID: 2900633560613931061, guid: d139b2e91e18b4b42b00999929248e08, type: 3}
   m_UIStateData:
     toolbarsEnabled: 0
     settingsToolStateData:
