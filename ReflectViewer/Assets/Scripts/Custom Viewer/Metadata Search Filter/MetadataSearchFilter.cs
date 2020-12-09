@@ -39,7 +39,6 @@ namespace UnityEngine.Reflect.Viewer.Pipeline
 
         void AddFilterNode()
         {
-            Debug.Log("Before Initialized.");
             if (pipelineAsset == null)
                 return;
 
