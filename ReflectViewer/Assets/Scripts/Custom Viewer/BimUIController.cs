@@ -34,6 +34,9 @@ namespace Unity.Reflect.Viewer.UI
 
         [SerializeField]
         ButtonControl m_FoldoutToggle;
+
+        [SerializeField]
+        List<string> groupsToFilter;
 #pragma warning restore CS0649
 
         DialogWindow m_DialogWindow;
@@ -132,7 +135,13 @@ namespace Unity.Reflect.Viewer.UI
                     var metadata = currentSelectedObject.GetComponentInParent<Metadata>();
                     foreach (var group in metadata.SortedByGroup())
                     {
-                        m_BimGroupDropdown.options.Add(new OptionData(group.Key));
+                        if (groupsToFilter != null && groupsToFilter.Any())
+                        {
+                            if (groupsToFilter.Contains(group.Key))
+                                m_BimGroupDropdown.options.Add(new OptionData(group.Key));
+                        }
+                        else
+                            m_BimGroupDropdown.options.Add(new OptionData(group.Key));
 
                         foreach (var parameter in group.Value)
                         {

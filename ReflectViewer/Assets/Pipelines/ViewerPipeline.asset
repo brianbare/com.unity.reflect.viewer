@@ -99,6 +99,8 @@ MonoBehaviour:
           maxPerNode: 16
           minPerNode: 6
           visibleObjectsMax: 10000
+          useDynamicNbVisibleObjectsMobile: 1
+          useDynamicNbVisibleObjectsDesktop: 0
           displayUnloadedObjectBoundingBoxes: 1
           displayOnlyBoundingBoxes: 0
           boundingBoxPrefab: {fileID: 6188160024377136411, guid: 222a70283ef344a7996531a982646737,
@@ -274,14 +276,16 @@ MonoBehaviour:
           - Manufacturer
           - Phase Created
           - Phase Demolished
-          - Layer
           forwardRendererDatas:
           - {fileID: 11400000, guid: 2031fc59f1d4f1b4fb97f943a0d54d10, type: 2}
           - {fileID: 11400000, guid: e8b25ecb1ec138b4887ce801215cf974, type: 2}
           - {fileID: 11400000, guid: 504442571853e8c4bbb6bcd76f450922, type: 2}
           - {fileID: 11400000, guid: 465aeb993fe084f58a967dff6eb5864f, type: 2}
           - {fileID: 11400000, guid: 465aeb993fe084f58a967dff6eb5864f, type: 2}
-          filtersUpdated:
+          groupsChanged:
+            m_PersistentCalls:
+              m_Calls: []
+          categoriesChanged:
             m_PersistentCalls:
               m_Calls: []
     0000000A:
