@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine.Reflect.Pipeline;
+using Unity.Reflect;
 
 namespace UnityEngine.Reflect.Viewer.Pipeline
 {
